@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ListasSimplementeLigadas
+namespace ListasSimplementeLigadasCirculares
 {
     internal class Program
     {
@@ -22,7 +23,9 @@ namespace ListasSimplementeLigadas
 
             lista.AgregarNodoInicio("Cero");
             Console.WriteLine(lista.Recorrer());
-            
+
+            Console.WriteLine(lista.imprimirPrimerUltimo());
+
             Nodo NodoBusquedaIndice = lista.BuscarPorIndice(2);
             if (NodoBusquedaIndice != null)
             {
@@ -32,6 +35,8 @@ namespace ListasSimplementeLigadas
             {
                 Console.WriteLine("No encontrado!");
             }
+            Console.WriteLine("\nPrueba");
+            Console.WriteLine(lista.imprimirPrimerUltimo());
 
 
             Nodo NodoBusqueda = lista.Buscar("Uno");
@@ -44,6 +49,9 @@ namespace ListasSimplementeLigadas
                 Console.WriteLine("No encontrado!");
             }
 
+            Console.WriteLine("\nPrueba");
+            Console.WriteLine(lista.imprimirPrimerUltimo());
+
             Nodo NodoBusquedaAnterior = lista.BuscarAnterior("Dos");
             if (NodoBusquedaAnterior != null)
             {
@@ -53,11 +61,17 @@ namespace ListasSimplementeLigadas
             {
                 Console.WriteLine("No encontrado!");
             }
+            Console.WriteLine("\nPrueba");
+            Console.WriteLine(lista.imprimirPrimerUltimo());
 
             Console.WriteLine("");
+            Console.WriteLine(lista.Recorrer());
             Console.WriteLine("Eliminando el uno");
             lista.BorrarNodo("Uno");
             Console.WriteLine(lista.Recorrer());
+
+            Console.WriteLine(lista.imprimirPrimerUltimo());
+
             Console.ReadKey();
         }
     }
