@@ -63,7 +63,62 @@ namespace ListasSimplementeLigadas
                 {
                     return nodoActual;
                 }
+            }
+            return null;
+        }
+        public void AgregarNodoInicio(string valor)
+        {
+            nodoActual = nodoInicial;
+            Nodo nuevoNodo = new Nodo(valor, nodoActual.Siguiente);
+            nodoActual.Siguiente = nuevoNodo;
+        }
+        public Nodo BuscarAnterior(string valor) 
+        {
+            if (ValidaVacio())
+            {
+                return null;
+            }
+            nodoActual = nodoInicial;
+            while (nodoActual.Siguiente != null && nodoActual.Siguiente.Valor != valor)
+            {
+                nodoActual = nodoActual.Siguiente;
+                if (nodoActual.Siguiente.Valor == valor)
+                {
+                    return nodoActual;
+                }
+            }
+            return null;
+        }
+        public void BorrarNodo(string valor)
+        {
+            if(ValidaVacio() == false)
+            {
+                nodoActual = Buscar(valor);
+                if(nodoActual != null)
+                {
+                    Nodo nodoAnterior = BuscarAnterior(valor);
+                    nodoAnterior.Siguiente = nodoActual.Siguiente;
+                    nodoActual.Siguiente = null;
+                }
+            }
+        }
+        public Nodo BuscarPorIndice(int indice)
+        {
+            int Indice = -1;
 
+            if (ValidaVacio() == false)
+            {
+                nodoActual = nodoInicial;
+                while (nodoActual.Siguiente != null)
+                {
+                    nodoActual = nodoActual.Siguiente;
+                    Indice++;
+
+                    if (Indice == indice)
+                    {
+                        return nodoActual;
+                    }
+                }
             }
             return null;
         }
