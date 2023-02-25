@@ -18,6 +18,7 @@ namespace ListasSimplementeLigadasCirculares
             lista.Agregar("Uno");
             lista.Agregar("Dos");
             lista.Agregar("Tres");
+            lista.Agregar("Cuatro");
             //Console.WriteLine(lista.RecorrerLista());
 
 
@@ -37,6 +38,12 @@ namespace ListasSimplementeLigadasCirculares
             }
             Console.WriteLine("\nPrueba");
             Console.WriteLine(lista.imprimirPrimerUltimo());
+
+            Console.WriteLine("\nPrueba de Dos");
+            Console.WriteLine(lista.NodoAnterior());
+
+            Console.WriteLine("\nPrueba de Dos");
+            Console.WriteLine(lista.NodoPosterior());
 
 
             Nodo NodoBusqueda = lista.Buscar("Uno");

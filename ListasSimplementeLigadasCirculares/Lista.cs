@@ -90,16 +90,35 @@ namespace ListasSimplementeLigadasCirculares
             }
             return null;
         }
+        public Nodo BuscarPosterior(string valor)
+        {
+            if (ValidaVacio())
+            {
+                return null;
+            }
+            nodoActual = nodoInicial;
+            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
+            {
+                nodoActual = nodoActual.Siguiente;
+                if (nodoActual.Valor == valor)
+                {
+                    nodoActual = nodoActual.Siguiente;
+                    return nodoActual;
+                }
+            }
+            return null;
+        }
         public void BorrarNodo(string valor)
         {
             if (ValidaVacio() == false)
             {
                 nodoActual = Buscar(valor);
-                if (nodoActual != null )
+                if (nodoActual != null)
                 {
                     Nodo nodoAnterior = BuscarAnterior(valor);
-                    nodoAnterior.Siguiente = nodoActual.Siguiente;
+                    nodoAnterior = nodoActual.Siguiente;
                     nodoActual.Siguiente = null;
+
                 }
             }
         }
@@ -139,6 +158,22 @@ namespace ListasSimplementeLigadasCirculares
             datos += nodoActual.Valor + "\n";
             //nodoActual = nodoActual.Siguiente;
             //datos += nodoActual.Siguiente.Valor + "\n";
+            return datos;
+        }
+
+        public string NodoAnterior()
+        { 
+            string datos = string.Empty;
+            nodoActual = BuscarAnterior("Dos");
+            datos += nodoActual.Valor + "\n";
+            return datos;
+        }
+
+        public string NodoPosterior()
+        {
+            string datos = string.Empty;
+            nodoActual = BuscarPosterior("Dos");
+            datos += nodoActual.Valor + "\n";
             return datos;
         }
     }
