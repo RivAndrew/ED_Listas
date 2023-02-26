@@ -12,16 +12,13 @@ namespace ListasSimplementeLigadas
         {
             Lista lista = new Lista();
 
-            //Console.WriteLine(lista.RecorrerLista());
-
-            lista.Agregar("Uno");
-            lista.Agregar("Dos");
-            lista.Agregar("Tres");
-            //Console.WriteLine(lista.RecorrerLista());
-
+            lista.AgregarNodo("Uno");
+            lista.AgregarNodo("Dos");
+            lista.AgregarNodo("Tres");
+            lista.AgregarNodo("Cuatro");
 
             lista.AgregarNodoInicio("Cero");
-            Console.WriteLine(lista.Recorrer());
+            Console.WriteLine(lista.RecorrerLista());
             
             Nodo NodoBusquedaIndice = lista.BuscarPorIndice(2);
             if (NodoBusquedaIndice != null)
@@ -57,7 +54,7 @@ namespace ListasSimplementeLigadas
             Console.WriteLine("");
             Console.WriteLine("Eliminando el uno");
             lista.BorrarNodo("Uno");
-            Console.WriteLine(lista.Recorrer());
+            Console.WriteLine(lista.RecorrerLista());
             Console.ReadKey();
         }
     }

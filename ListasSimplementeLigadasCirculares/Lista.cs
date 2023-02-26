@@ -26,46 +26,29 @@ namespace ListasSimplementeLigadasCirculares
         {
             nodoInicial.Siguiente = null;
         }
-        public string Recorrer()
+        public string RecorrerLista()
         {
-            string datos = string.Empty;
+            string valores = string.Empty;
             nodoActual = nodoInicial;
             while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
-                datos += nodoActual.Valor + "\n";
+                valores += $"{nodoActual.Valor}\n";
             }
-            return datos;
-        }
-        public void Agregar(string valor)
-        {
-            nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
-            {
-                nodoActual = nodoActual.Siguiente;
-            }
-            Nodo nodoNuevo = new Nodo(valor);
-            nodoActual.Siguiente = nodoNuevo;
-            nodoActual = nodoNuevo;
-            nodoActual.Siguiente = nodoInicial;
 
+            return valores;
         }
-        public Nodo Buscar(string valor)
+        public void AgregarNodo(string valor)
         {
-            if (ValidaVacio())
-            {
-                return null;
-            }
             nodoActual = nodoInicial;
             while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
-                if (nodoActual.Valor == valor)
-                {
-                    return nodoActual;
-                }
             }
-            return null;
+            Nodo nuevoNodo = new Nodo(valor);
+            nodoActual.Siguiente = nuevoNodo;
+            nodoActual = nuevoNodo;
+            nodoActual.Siguiente = nodoInicial;
         }
         public void AgregarNodoInicio(string valor)
         {
@@ -73,37 +56,53 @@ namespace ListasSimplementeLigadasCirculares
             Nodo nuevoNodo = new Nodo(valor, nodoActual.Siguiente);
             nodoActual.Siguiente = nuevoNodo;
         }
-        public Nodo BuscarAnterior(string valor)
+        public Nodo Buscar(string valor)
         {
-            if (ValidaVacio())
+            if (ValidaVacio() == false)
             {
-                return null;
-            }
-            nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente.Valor != valor && nodoActual.Siguiente != nodoInicial)
-            {
-                nodoActual = nodoActual.Siguiente;
-                if (nodoActual.Siguiente.Valor == valor)
+                Nodo nodoBusqueda = nodoInicial;
+                while (nodoBusqueda.Siguiente != null && nodoBusqueda.Siguiente != nodoInicial)
                 {
-                    return nodoActual;
+                    nodoBusqueda = nodoBusqueda.Siguiente;
+                    if (nodoBusqueda.Valor == valor)
+                    {
+                        return nodoBusqueda;
+                    }
                 }
             }
             return null;
         }
-        public Nodo BuscarPosterior(string valor)
+        public Nodo BuscarPorIndice(int indice)
         {
-            if (ValidaVacio())
+            int Indice = -1;
+            if (ValidaVacio() == false)
             {
-                return null;
-            }
-            nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
-            {
-                nodoActual = nodoActual.Siguiente;
-                if (nodoActual.Valor == valor)
+                Nodo nodoBusqueda = nodoInicial;
+                while (nodoBusqueda.Siguiente != null && nodoBusqueda.Siguiente != nodoInicial)
                 {
-                    nodoActual = nodoActual.Siguiente;
-                    return nodoActual;
+                    nodoBusqueda = nodoBusqueda.Siguiente;
+                    Indice++;
+                    if (Indice == indice)
+                    {
+                        return nodoBusqueda;
+                    }
+                }
+            }
+            return null;
+        }
+        public Nodo BuscarAnterior(string valor)
+        {
+            if (ValidaVacio() == false)
+            {
+                Nodo nodoBusqueda = nodoInicial;
+                while (nodoBusqueda.Siguiente != null
+                            && nodoBusqueda.Siguiente.Valor != valor && nodoBusqueda.Siguiente != nodoInicial)
+                {
+                    nodoBusqueda = nodoBusqueda.Siguiente;
+                    if (nodoBusqueda.Siguiente.Valor == valor)
+                    {
+                        return nodoBusqueda;
+                    }
                 }
             }
             return null;
@@ -116,64 +115,41 @@ namespace ListasSimplementeLigadasCirculares
                 if (nodoActual != null)
                 {
                     Nodo nodoAnterior = BuscarAnterior(valor);
-                    nodoAnterior = nodoActual.Siguiente;
+                    nodoAnterior.Siguiente = nodoActual.Siguiente;
                     nodoActual.Siguiente = null;
-
                 }
             }
         }
-        public Nodo BuscarPorIndice(int indice)
-        {
-            int Indice = -1;
-
-            if (ValidaVacio() == false)
-            {
-                nodoActual = nodoInicial;
-                while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
-                {
-                    nodoActual = nodoActual.Siguiente;
-                    Indice++;
-
-                    if (Indice == indice)
-                    {
-                        return nodoActual;
-                    }
-                }
-            }
-            return null;
-        }
-
         public string imprimirPrimerUltimo()
         {
             string datos = string.Empty;
-            nodoActual = nodoInicial;
-            nodoActual = nodoActual.Siguiente;
+            nodoActual = nodoInicial.Siguiente;
+            //nodoActual = nodoActual.Siguiente;
             datos += nodoActual.Valor + "\n";
             while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
-                
             }
-
             datos += nodoActual.Valor + "\n";
-            //nodoActual = nodoActual.Siguiente;
-            //datos += nodoActual.Siguiente.Valor + "\n";
+            nodoActual = nodoActual.Siguiente;
+            datos += nodoActual.Valor + "\n";
             return datos;
         }
 
-        public string NodoAnterior()
+        // Se imprimen todos los Nodos saltandose el nodoInicial
+        public string ImprimirCiclo() 
         { 
             string datos = string.Empty;
-            nodoActual = BuscarAnterior("Dos");
-            datos += nodoActual.Valor + "\n";
-            return datos;
-        }
-
-        public string NodoPosterior()
-        {
-            string datos = string.Empty;
-            nodoActual = BuscarPosterior("Dos");
-            datos += nodoActual.Valor + "\n";
+            nodoActual = nodoInicial;
+            for (int i = 0; i < 10; i++)
+            {
+                if (nodoActual == nodoInicial) 
+                {
+                    nodoActual = nodoActual.Siguiente;
+                }
+                datos += nodoActual.Valor + "\n";
+                nodoActual = nodoActual.Siguiente;
+            }
             return datos;
         }
     }

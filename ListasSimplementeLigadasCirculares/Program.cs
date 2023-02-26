@@ -13,20 +13,18 @@ namespace ListasSimplementeLigadasCirculares
         {
             Lista lista = new Lista();
 
-            //Console.WriteLine(lista.RecorrerLista());
-
-            lista.Agregar("Uno");
-            lista.Agregar("Dos");
-            lista.Agregar("Tres");
-            lista.Agregar("Cuatro");
-            //Console.WriteLine(lista.RecorrerLista());
-
+            lista.AgregarNodo("Uno");
+            lista.AgregarNodo("Dos");
+            lista.AgregarNodo("Tres");
+            lista.AgregarNodo("Cuatro");
 
             lista.AgregarNodoInicio("Cero");
-            Console.WriteLine(lista.Recorrer());
+            Console.WriteLine(lista.RecorrerLista());
 
+            Console.WriteLine("Se imprime el primero, el ultimo y el ultimo.siguiente: ");
             Console.WriteLine(lista.imprimirPrimerUltimo());
-
+            
+            Console.WriteLine("Busca el indice 2:");
             Nodo NodoBusquedaIndice = lista.BuscarPorIndice(2);
             if (NodoBusquedaIndice != null)
             {
@@ -36,16 +34,8 @@ namespace ListasSimplementeLigadasCirculares
             {
                 Console.WriteLine("No encontrado!");
             }
-            Console.WriteLine("\nPrueba");
-            Console.WriteLine(lista.imprimirPrimerUltimo());
 
-            Console.WriteLine("\nPrueba de Dos");
-            Console.WriteLine(lista.NodoAnterior());
-
-            Console.WriteLine("\nPrueba de Dos");
-            Console.WriteLine(lista.NodoPosterior());
-
-
+            Console.WriteLine("Busca el Uno");
             Nodo NodoBusqueda = lista.Buscar("Uno");
             if (NodoBusqueda != null)
             {
@@ -56,9 +46,7 @@ namespace ListasSimplementeLigadasCirculares
                 Console.WriteLine("No encontrado!");
             }
 
-            Console.WriteLine("\nPrueba");
-            Console.WriteLine(lista.imprimirPrimerUltimo());
-
+            Console.WriteLine("Busca el anterior al Dos");
             Nodo NodoBusquedaAnterior = lista.BuscarAnterior("Dos");
             if (NodoBusquedaAnterior != null)
             {
@@ -68,16 +56,18 @@ namespace ListasSimplementeLigadasCirculares
             {
                 Console.WriteLine("No encontrado!");
             }
-            Console.WriteLine("\nPrueba");
-            Console.WriteLine(lista.imprimirPrimerUltimo());
-
+            
             Console.WriteLine("");
-            Console.WriteLine(lista.Recorrer());
             Console.WriteLine("Eliminando el uno");
             lista.BorrarNodo("Uno");
-            Console.WriteLine(lista.Recorrer());
+            Console.WriteLine(lista.RecorrerLista());
 
+            lista.AgregarNodo("Cinco");
+
+            Console.WriteLine("Se imprime el primero, el ultmo y el ultimo.siguiente:");
             Console.WriteLine(lista.imprimirPrimerUltimo());
+
+            Console.WriteLine("\nSe imprime ciclo de 10\n" + lista.ImprimirCiclo());
 
             Console.ReadKey();
         }
