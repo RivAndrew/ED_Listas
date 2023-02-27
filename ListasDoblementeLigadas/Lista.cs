@@ -25,6 +25,7 @@ namespace ListasDoblementeLigadas
         public void VaciarLista()
         {
             nodoInicial.Siguiente = null;
+            nodoInicial.Anterior = null;
         }
         public string RecorrerLista()
         {
@@ -52,12 +53,7 @@ namespace ListasDoblementeLigadas
         {
             nodoActual = nodoInicial;
             Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoActual.Siguiente);
-            if (nodoActual.Siguiente != null)
-            {
-                nodoActual = nodoActual.Siguiente;
-                nodoActual.Anterior = nuevoNodo;
-            }
-            nodoActual = nodoInicial;
+            nodoActual.Siguiente.Anterior = nuevoNodo;
             nodoActual.Siguiente = nuevoNodo;
         }
         public Nodo Buscar(string valor)
@@ -94,23 +90,7 @@ namespace ListasDoblementeLigadas
             }
             return null;
         }
-        public Nodo BuscarAnterior(string valor)
-        {
-            if (ValidaVacio() == false)
-            {
-                Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Siguiente != null
-                            && nodoBusqueda.Valor != valor)
-                {
-                    nodoBusqueda = nodoBusqueda.Siguiente;
-                    if (nodoBusqueda.Valor == valor)
-                    {
-                        return nodoBusqueda.Anterior;
-                    }
-                }
-            }
-            return null;
-        }
+        // Como es una lista doblemente ligada, usar 'Anterior' es lo mismo que usar el metodo BuscarAnterior.
         public void BorrarNodo(string valor)
         {
             if (ValidaVacio() == false)
@@ -132,12 +112,11 @@ namespace ListasDoblementeLigadas
             {
                 nodoActual = nodoActual.Siguiente;
             }
-            while (nodoActual.Anterior != null && nodoActual.Anterior != nodoInicial)
+            while (nodoActual.Anterior != null)
             {
                 valores += $"{nodoActual.Valor}\n";
                 nodoActual = nodoActual.Anterior;
             }
-            valores += $"{nodoActual.Valor}\n";
             return valores;
         }
     }

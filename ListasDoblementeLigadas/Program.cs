@@ -12,18 +12,17 @@ namespace ListasDoblementeLigadas
         {
             Lista lista = new Lista();
 
-            //lista.AgregarNodoInicio("Cero");
             lista.AgregarNodo("Uno");
             lista.AgregarNodo("Dos");
             lista.AgregarNodo("Tres");
-            lista.AgregarNodo("Cuatro");
+            //lista.AgregarNodo("Cuatro");
 
             lista.AgregarNodoInicio("Cero");
-            Console.WriteLine(lista.RecorrerLista());
-            Console.WriteLine(lista.RecorrerListaInversa());
+            Console.WriteLine("Se recorre la lista:\n" + lista.RecorrerLista());
+            Console.WriteLine("Se recorre la lista inversa:\n" + lista.RecorrerListaInversa());
 
-            Console.WriteLine("Buscando por indice '4':");
-            Nodo NodoBusquedaIndice = lista.BuscarPorIndice(4);
+            Console.WriteLine("Buscando por indice '3':");
+            Nodo NodoBusquedaIndice = lista.BuscarPorIndice(3);
             if (NodoBusquedaIndice != null)
             {
                 Console.WriteLine(NodoBusquedaIndice.Valor);
@@ -44,32 +43,36 @@ namespace ListasDoblementeLigadas
                 Console.WriteLine("No encontrado!");
             }
 
-            Console.WriteLine("Buscando el anterior a Cuatro: ");
-            Nodo NodoBusquedaAnterior = lista.BuscarAnterior("Cuatro");
+            Console.WriteLine("Buscando el anterior a Tres: ");
+            Nodo NodoBusquedaAnterior = lista.Buscar("Tres");
             if (NodoBusquedaAnterior != null)
             {
-                Console.WriteLine(NodoBusquedaAnterior.Valor);
+                Console.WriteLine(NodoBusquedaAnterior.Anterior.Valor);
             }
             else
             {
                 Console.WriteLine("No encontrado!");
             }
 
-            Console.WriteLine("");
-            Console.WriteLine("Eliminando el uno");
+            Console.WriteLine("\nEliminando el uno");
             lista.BorrarNodo("Uno");
             Console.WriteLine(lista.RecorrerLista());
 
-            Console.WriteLine("Agregando nodo al inicio 'primero'");
+            Console.WriteLine("Agregando nodo 'primero' al inicio ");
             lista.AgregarNodoInicio("primero");
+
+            Console.WriteLine(lista.RecorrerLista());
+            Console.WriteLine("Recorriendo la lista inversa\n" + lista.RecorrerListaInversa());
+
+            //Console.WriteLine("");
+            //Console.WriteLine("Eliminando el primero");
+            //lista.BorrarNodo("primero");
             //Console.WriteLine(lista.RecorrerLista());
 
-            Console.WriteLine("Recorriendo la lista inversa\n" + lista.RecorrerListaInversa());
+            Console.WriteLine("Se vacia la lista: ");
+            lista.VaciarLista();
             Console.WriteLine(lista.RecorrerLista());
-            Console.WriteLine("");
-            Console.WriteLine("Eliminando el primero");
-            lista.BorrarNodo("primero");
-            Console.WriteLine(lista.RecorrerLista());
+            Console.WriteLine(lista.RecorrerListaInversa());
 
             Console.ReadKey();
         }
