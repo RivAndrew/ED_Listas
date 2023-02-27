@@ -15,7 +15,6 @@ namespace ListasSimplementeLigadas
         {
             nodoInicial = new Nodo();
         }
-
         public bool ValidaVacio()
         {
             if (nodoInicial.Siguiente == null)
@@ -24,88 +23,73 @@ namespace ListasSimplementeLigadas
             }
             return false;
         }
-
         public void VaciarLista()
         {
             nodoInicial.Siguiente = null;
         }
-
         public string RecorrerLista()
         {
-            string valores = string.Empty;
-
-            nodoActual = nodoInicial;
-
-            while (nodoActual.Siguiente != null)
+            if (ValidaVacio() == false)
             {
-                nodoActual = nodoActual.Siguiente;
-                valores += $"{nodoActual.Valor}\n";
+                string valores = string.Empty;
+                nodoActual = nodoInicial;
+                while (nodoActual.Siguiente != null)
+                {
+                    nodoActual = nodoActual.Siguiente;
+                    valores += $"{nodoActual.Valor}\n";
+                }
+                return valores;
             }
-
-            return valores;
+            return "La lista esta vacia.";
         }
-
         public void AgregarNodo(string valor)
         {
             nodoActual = nodoInicial;
-
             while (nodoActual.Siguiente != null)
             {
                 nodoActual = nodoActual.Siguiente;
             }
-
             Nodo nuevoNodo = new Nodo(valor);
-
             nodoActual.Siguiente = nuevoNodo;
         }
-
         public void AgregarNodoInicio(string valor)
         {
             nodoActual = nodoInicial;
             Nodo nuevoNodo = new Nodo(valor, nodoActual.Siguiente);
             nodoActual.Siguiente = nuevoNodo;
         }
-
         public Nodo Buscar(string valor)
         {
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-
                 while (nodoBusqueda.Siguiente != null)
                 {
                     nodoBusqueda = nodoBusqueda.Siguiente;
-
                     if (nodoBusqueda.Valor == valor)
                     {
                         return nodoBusqueda;
                     }
                 }
             }
-
             return null;
         }
-
         public Nodo BuscarPorIndice(int indice)
         {
             int Indice = -1;
-
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-
                 while (nodoBusqueda.Siguiente != null)
                 {
                     nodoBusqueda = nodoBusqueda.Siguiente;
                     Indice++;
-
                     if (Indice == indice)
                     {
                         return nodoBusqueda;
                     }
                 }
             }
-
             return null;
         }
 
@@ -114,7 +98,6 @@ namespace ListasSimplementeLigadas
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-
                 while (nodoBusqueda.Siguiente != null
                             && nodoBusqueda.Siguiente.Valor != valor)
                 {
@@ -127,13 +110,11 @@ namespace ListasSimplementeLigadas
             }
             return null;
         }
-
         public void BorrarNodo(string valor)
         {
             if (ValidaVacio() == false)
             {
                 nodoActual = Buscar(valor);
-
                 if (nodoActual != null)
                 {
                     Nodo nodoAnterior = BuscarAnterior(valor);
