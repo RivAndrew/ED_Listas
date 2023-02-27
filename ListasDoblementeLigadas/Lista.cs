@@ -8,5 +8,117 @@ namespace ListasDoblementeLigadas
 {
     internal class Lista
     {
+        Nodo nodoInicial;
+        Nodo nodoActual;
+        public Lista()
+        {
+            nodoInicial = new Nodo();
+        }
+        public bool ValidaVacio()
+        {
+            if (nodoInicial.Siguiente == null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public void VaciarLista()
+        {
+            nodoInicial.Siguiente = null;
+        }
+        public string RecorrerLista()
+        {
+            string valores = string.Empty;
+            nodoActual = nodoInicial;
+            while (nodoActual.Siguiente != null)
+            {
+                nodoActual = nodoActual.Siguiente;
+                valores += $"{nodoActual.Valor}\n";
+            }
+            return valores;
+        }
+        public void AgregarNodo(string valor)
+        {
+            nodoActual = nodoInicial;
+            while (nodoActual.Siguiente != null)
+            {
+                nodoActual = nodoActual.Siguiente;
+            }
+            Nodo nuevoNodo = new Nodo(valor);
+            nodoActual.Siguiente = nuevoNodo;
+            nuevoNodo.Anterior = nodoActual;
+        }
+        public void AgregarNodoInicio(string valor)
+        {
+            nodoActual = nodoInicial;
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoActual.Siguiente);
+            nodoActual.Siguiente = nuevoNodo;
+        }
+        public Nodo Buscar(string valor)
+        {
+            if (ValidaVacio() == false)
+            {
+                Nodo nodoBusqueda = nodoInicial;
+                while (nodoBusqueda.Siguiente != null)
+                {
+                    nodoBusqueda = nodoBusqueda.Siguiente;
+                    if (nodoBusqueda.Valor == valor)
+                    {
+                        return nodoBusqueda;
+                    }
+                }
+            }
+            return null;
+        }
+        public Nodo BuscarPorIndice(int indice)
+        {
+            int Indice = -1;
+            if (ValidaVacio() == false)
+            {
+                Nodo nodoBusqueda = nodoInicial;
+                while (nodoBusqueda.Siguiente != null)
+                {
+                    nodoBusqueda = nodoBusqueda.Siguiente;
+                    Indice++;
+                    if (Indice == indice)
+                    {
+                        return nodoBusqueda;
+                    }
+                }
+            }
+            return null;
+        }
+        // Como es doblemente ligada realmente no se necesita este método.
+        public Nodo BuscarAnterior(string valor)
+        {
+            if (ValidaVacio() == false)
+            {
+                Nodo nodoBusqueda = nodoInicial;
+                while (nodoBusqueda.Siguiente != null
+                            && nodoBusqueda.Valor != valor)
+                {
+                    nodoBusqueda = nodoBusqueda.Siguiente;
+                    if (nodoBusqueda.Valor == valor)
+                    {
+                        return nodoBusqueda.Anterior;
+                    }
+                }
+            }
+            return null;
+        }
+        public void BorrarNodo(string valor)
+        {
+            if (ValidaVacio() == false)
+            {
+                nodoActual = Buscar(valor);
+                if (nodoActual != null)
+                {
+                    Nodo nodoAnterior = BuscarAnterior(valor);
+                    nodoAnterior.Siguiente = nodoActual.Siguiente;
+                    nodoActual.Siguiente = null;
+                    nodoActual.Anterior = null;
+                }
+            }
+        }
     }
 }
