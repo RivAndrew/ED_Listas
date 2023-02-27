@@ -52,6 +52,12 @@ namespace ListasDoblementeLigadas
         {
             nodoActual = nodoInicial;
             Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoActual.Siguiente);
+            if (nodoActual.Siguiente != null)
+            {
+                nodoActual = nodoActual.Siguiente;
+                nodoActual.Anterior = nuevoNodo;
+            }
+            nodoActual = nodoInicial;
             nodoActual.Siguiente = nuevoNodo;
         }
         public Nodo Buscar(string valor)
@@ -88,7 +94,6 @@ namespace ListasDoblementeLigadas
             }
             return null;
         }
-        // Como es doblemente ligada realmente no se necesita este método.
         public Nodo BuscarAnterior(string valor)
         {
             if (ValidaVacio() == false)
@@ -113,12 +118,27 @@ namespace ListasDoblementeLigadas
                 nodoActual = Buscar(valor);
                 if (nodoActual != null)
                 {
-                    Nodo nodoAnterior = BuscarAnterior(valor);
-                    nodoAnterior.Siguiente = nodoActual.Siguiente;
+                    nodoActual.Anterior.Siguiente = nodoActual.Siguiente;
+                    nodoActual.Siguiente.Anterior = nodoActual.Anterior;
                     nodoActual.Siguiente = null;
                     nodoActual.Anterior = null;
                 }
             }
+        }
+        public string RecorrerListaInversa()
+        {
+            string valores = string.Empty;
+            while (nodoActual.Siguiente != null)
+            {
+                nodoActual = nodoActual.Siguiente;
+            }
+            while (nodoActual.Anterior != null && nodoActual.Anterior != nodoInicial)
+            {
+                valores += $"{nodoActual.Valor}\n";
+                nodoActual = nodoActual.Anterior;
+            }
+            valores += $"{nodoActual.Valor}\n";
+            return valores;
         }
     }
 }
