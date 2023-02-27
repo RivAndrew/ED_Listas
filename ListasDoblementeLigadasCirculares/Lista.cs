@@ -25,6 +25,7 @@ namespace ListasDoblementeLigadasCirculares
         public void VaciarLista()
         {
             nodoInicial.Siguiente = null;
+            nodoInicial.Anterior = null;
         }
         public string RecorrerLista()
         {
@@ -56,10 +57,8 @@ namespace ListasDoblementeLigadasCirculares
             Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoActual.Siguiente);
             if (nodoActual.Siguiente != null)
             {
-                nodoActual = nodoActual.Siguiente;
-                nodoActual.Anterior = nuevoNodo;
+                nodoActual.Siguiente.Anterior = nuevoNodo;
             }
-            nodoActual = nodoInicial;
             nodoActual.Siguiente = nuevoNodo;
         }
         public Nodo Buscar(string valor)
@@ -96,23 +95,9 @@ namespace ListasDoblementeLigadasCirculares
             }
             return null;
         }
-        public Nodo BuscarAnterior(string valor)
-        {
-            if (ValidaVacio() == false)
-            {
-                Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Siguiente != null
-                            && nodoBusqueda.Valor != valor && nodoBusqueda.Siguiente != nodoInicial)
-                {
-                    nodoBusqueda = nodoBusqueda.Siguiente;
-                    if (nodoBusqueda.Valor == valor)
-                    {
-                        return nodoBusqueda.Anterior;
-                    }
-                }
-            }
-            return null;
-        }
+
+        // Como es una lista doblemente ligada, usar 'Anterior' es lo mismo que usar el metodo BuscarAnterior.
+
         public void BorrarNodo(string valor)
         {
             if (ValidaVacio() == false)
@@ -130,44 +115,17 @@ namespace ListasDoblementeLigadasCirculares
         public string RecorrerListaInversa()
         {
             string valores = string.Empty;
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
-            {
-                nodoActual = nodoActual.Siguiente;
-            }
+            nodoActual = nodoInicial;
             while (nodoActual.Anterior != null && nodoActual.Anterior != nodoInicial)
             {
-                valores += $"{nodoActual.Valor}\n";
                 nodoActual = nodoActual.Anterior;
+                valores += $"{nodoActual.Valor}\n";
             }
-            valores += $"{nodoActual.Valor}\n";
             return valores;
         }
-        public string imprimirPrimerUltimoSiguiente()
-        {
-            string datos = string.Empty;
-            nodoActual = nodoInicial.Siguiente;
-            //nodoActual = nodoActual.Siguiente;
-            datos += nodoActual.Valor + "\n";
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
-            {
-                nodoActual = nodoActual.Siguiente;
-            }
-            datos += nodoActual.Valor + "\n";
-            nodoActual = nodoActual.Siguiente;
-            datos += nodoActual.Valor + "\n";
-            return datos;
-        }
-        public string imprimirUltimoPrimerAnterior()
-        {
-            string datos = string.Empty;
-            nodoActual = nodoInicial;
-            datos += nodoActual.Anterior.Valor + "\n";
-            datos += nodoActual.Valor + "\n";
-            datos += nodoActual.Siguiente.Valor + "\n";
-            return datos;
-        }
 
-        // Se imprimen todos los Nodos saltandose el nodoInicial
+        // Se imprimen todos los Nodos usando 'Siguiente' para comprobar la conexion de los Nodos,
+        // saltandose el nodoInicial el cual se usa como referencia.
         public string ImprimirCiclo()
         {
             string datos = string.Empty;
@@ -183,6 +141,8 @@ namespace ListasDoblementeLigadasCirculares
             }
             return datos;
         }
+        // Se imprimen todos los Nodos usando 'Anterior' para comprobar la conexion de los Nodos,
+        // saltandose el nodoInicial el cual se usa como referencia.
         public string ImprimirCicloInverso()
         {
             string datos = string.Empty;

@@ -12,20 +12,14 @@ namespace ListasDoblementeLigadasCirculares
         {
             Lista lista = new Lista();
 
-            //lista.AgregarNodoInicio("Cero");
             lista.AgregarNodo("Uno");
             lista.AgregarNodo("Dos");
             lista.AgregarNodo("Tres");
             //lista.AgregarNodo("Cuatro");
 
             lista.AgregarNodoInicio("Cero");
-            Console.WriteLine(lista.RecorrerLista());
-            Console.WriteLine(lista.RecorrerListaInversa());
-
-            Console.WriteLine("Se imprime el primero, el ultimo y el nodoInicio: ");
-            Console.WriteLine(lista.imprimirPrimerUltimoSiguiente());
-            Console.WriteLine("Se imprime el ultimo, el nodoInicio y el primero: ");
-            Console.WriteLine(lista.imprimirUltimoPrimerAnterior());
+            Console.WriteLine("Se recorre la lista:\n"+lista.RecorrerLista());
+            Console.WriteLine("Se recorre la lista inversa:\n"+lista.RecorrerListaInversa());
 
             Console.WriteLine("Buscando por indice '3':");
             Nodo NodoBusquedaIndice = lista.BuscarPorIndice(3);
@@ -50,10 +44,10 @@ namespace ListasDoblementeLigadasCirculares
             }
 
             Console.WriteLine("Buscando el anterior a Tres: ");
-            Nodo NodoBusquedaAnterior = lista.BuscarAnterior("Tres");
+            Nodo NodoBusquedaAnterior = lista.Buscar("Tres");
             if (NodoBusquedaAnterior != null)
             {
-                Console.WriteLine(NodoBusquedaAnterior.Valor);
+                Console.WriteLine(NodoBusquedaAnterior.Anterior.Valor);
             }
             else
             {
@@ -65,24 +59,25 @@ namespace ListasDoblementeLigadasCirculares
             lista.BorrarNodo("Uno");
             Console.WriteLine(lista.RecorrerLista());
 
-            Console.WriteLine("Agregando nodo al inicio 'primero'");
+            Console.WriteLine("Agregando nodo 'primero' al inicio ");
             lista.AgregarNodoInicio("primero");
 
-            Console.WriteLine("Se imprime el primero, el ultimo y el nodoInicio: ");
-            Console.WriteLine(lista.imprimirPrimerUltimoSiguiente());
-            Console.WriteLine("Se imprime el ultimo, el nodoInicio y el primero: ");
-            Console.WriteLine(lista.imprimirUltimoPrimerAnterior());
-
+            Console.WriteLine(lista.RecorrerLista());
             Console.WriteLine("Recorriendo la lista inversa\n" + lista.RecorrerListaInversa());
-            Console.WriteLine(lista.RecorrerLista());
-            Console.WriteLine("\nSe imprime ciclo de 10\n" + lista.ImprimirCiclo());
-            Console.WriteLine("");
-            Console.WriteLine("Eliminando el primero");
-            lista.BorrarNodo("primero");
-            Console.WriteLine(lista.RecorrerLista());
+            
+            Console.WriteLine("\nSe imprime nodo.siguiente 10 veces para confirmar de que la conexion funcione correctamente.\n" + lista.ImprimirCiclo());
 
-            Console.WriteLine("\nSe imprime ciclo de 10\n" + lista.ImprimirCiclo());
-            Console.WriteLine("\nSe imprime ciclo inverso de 10\n" + lista.ImprimirCicloInverso());
+            //Console.WriteLine("");
+            //Console.WriteLine("Eliminando el primero");
+            //lista.BorrarNodo("primero");
+            //Console.WriteLine(lista.RecorrerLista());
+
+            Console.WriteLine("\nSe imprime nodo.anterior 10 veces para confirmar de que la conexion funcione correctamente.\n" + lista.ImprimirCicloInverso());
+
+            Console.WriteLine("Se vacia la lista: ");
+            lista.VaciarLista();
+            Console.WriteLine(lista.RecorrerLista());
+            Console.WriteLine(lista.RecorrerListaInversa());
 
             Console.ReadKey();
         }
