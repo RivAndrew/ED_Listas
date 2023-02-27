@@ -16,16 +16,13 @@ namespace ListasSimplementeLigadasCirculares
             lista.AgregarNodo("Uno");
             lista.AgregarNodo("Dos");
             lista.AgregarNodo("Tres");
-            lista.AgregarNodo("Cuatro");
+            //lista.AgregarNodo("Cuatro");
 
             lista.AgregarNodoInicio("Cero");
-            Console.WriteLine(lista.RecorrerLista());
+            Console.WriteLine("Se recorre la lista:\n" + lista.RecorrerLista());
 
-            Console.WriteLine("Se imprime el primero, el ultimo y el ultimo.siguiente: ");
-            Console.WriteLine(lista.imprimirPrimerUltimo());
-            
-            Console.WriteLine("Busca el indice 2:");
-            Nodo NodoBusquedaIndice = lista.BuscarPorIndice(2);
+            Console.WriteLine("Buscando por indice '3':");
+            Nodo NodoBusquedaIndice = lista.BuscarPorIndice(3);
             if (NodoBusquedaIndice != null)
             {
                 Console.WriteLine(NodoBusquedaIndice.Valor);
@@ -35,7 +32,7 @@ namespace ListasSimplementeLigadasCirculares
                 Console.WriteLine("No encontrado!");
             }
 
-            Console.WriteLine("Busca el Uno");
+            Console.WriteLine("Buscando Uno:");
             Nodo NodoBusqueda = lista.Buscar("Uno");
             if (NodoBusqueda != null)
             {
@@ -46,8 +43,8 @@ namespace ListasSimplementeLigadasCirculares
                 Console.WriteLine("No encontrado!");
             }
 
-            Console.WriteLine("Busca el anterior al Dos");
-            Nodo NodoBusquedaAnterior = lista.BuscarAnterior("Dos");
+            Console.WriteLine("Buscando el anterior a Tres: ");
+            Nodo NodoBusquedaAnterior = lista.BuscarAnterior("Tres");
             if (NodoBusquedaAnterior != null)
             {
                 Console.WriteLine(NodoBusquedaAnterior.Valor);
@@ -56,19 +53,26 @@ namespace ListasSimplementeLigadasCirculares
             {
                 Console.WriteLine("No encontrado!");
             }
-            
-            Console.WriteLine("");
-            Console.WriteLine("Eliminando el uno");
+
+            Console.WriteLine("\nEliminando el uno");
             lista.BorrarNodo("Uno");
             Console.WriteLine(lista.RecorrerLista());
 
-            Console.WriteLine("Se agregó un nuevo nodo 'Cinco'\n");
-            lista.AgregarNodo("Cinco");
+            Console.WriteLine("Agregando nodo 'primero' al inicio ");
+            lista.AgregarNodoInicio("primero");
 
-            Console.WriteLine("Se imprime el primero, el ultmo y el ultimo.siguiente:");
-            Console.WriteLine(lista.imprimirPrimerUltimo());
+            Console.WriteLine(lista.RecorrerLista());
 
-            Console.WriteLine("\nSe imprime ciclo de 10\n" + lista.ImprimirCiclo());
+            Console.WriteLine("Se imprime nodo.siguiente 10 veces para confirmar que la conexion funcione correctamente.\n" + lista.ImprimirCiclo());
+
+            //Console.WriteLine("");
+            //Console.WriteLine("Eliminando el primero");
+            //lista.BorrarNodo("primero");
+            //Console.WriteLine(lista.RecorrerLista());
+
+            Console.WriteLine("Se vacia la lista: ");
+            lista.VaciarLista();
+            Console.WriteLine(lista.RecorrerLista());
 
             Console.ReadKey();
         }

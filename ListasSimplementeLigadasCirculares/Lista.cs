@@ -35,7 +35,6 @@ namespace ListasSimplementeLigadasCirculares
                 nodoActual = nodoActual.Siguiente;
                 valores += $"{nodoActual.Valor}\n";
             }
-
             return valores;
         }
         public void AgregarNodo(string valor)
@@ -47,7 +46,6 @@ namespace ListasSimplementeLigadasCirculares
             }
             Nodo nuevoNodo = new Nodo(valor);
             nodoActual.Siguiente = nuevoNodo;
-            //nodoActual = nuevoNodo;
             nuevoNodo.Siguiente = nodoInicial;
         }
         public void AgregarNodoInicio(string valor)
@@ -120,23 +118,9 @@ namespace ListasSimplementeLigadasCirculares
                 }
             }
         }
-        public string imprimirPrimerUltimo()
-        {
-            string datos = string.Empty;
-            nodoActual = nodoInicial.Siguiente;
-            //nodoActual = nodoActual.Siguiente;
-            datos += nodoActual.Valor + "\n";
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
-            {
-                nodoActual = nodoActual.Siguiente;
-            }
-            datos += nodoActual.Valor + "\n";
-            nodoActual = nodoActual.Siguiente;
-            datos += nodoActual.Valor + "\n";
-            return datos;
-        }
 
-        // Se imprimen todos los Nodos saltandose el nodoInicial
+        // Se imprimen todos los Nodos usando 'Siguiente' para comprobar la conexion de los Nodos,
+        // saltandose el nodoInicial el cual se usa como referencia.
         public string ImprimirCiclo() 
         { 
             string datos = string.Empty;
@@ -153,4 +137,4 @@ namespace ListasSimplementeLigadasCirculares
             return datos;
         }
     }
- }
+}
