@@ -62,6 +62,7 @@ namespace ListasSimplementeLigadasCirculares
             lista.BorrarNodo("Uno");
             Console.WriteLine(lista.RecorrerLista());
 
+            Console.WriteLine("Se agregó un nuevo nodo 'Cinco'\n");
             lista.AgregarNodo("Cinco");
 
             Console.WriteLine("Se imprime el primero, el ultmo y el ultimo.siguiente:");
