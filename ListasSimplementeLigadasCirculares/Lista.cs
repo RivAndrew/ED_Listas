@@ -47,8 +47,8 @@ namespace ListasSimplementeLigadasCirculares
             }
             Nodo nuevoNodo = new Nodo(valor);
             nodoActual.Siguiente = nuevoNodo;
-            nodoActual = nuevoNodo;
-            nodoActual.Siguiente = nodoInicial;
+            //nodoActual = nuevoNodo;
+            nuevoNodo.Siguiente = nodoInicial;
         }
         public void AgregarNodoInicio(string valor)
         {
