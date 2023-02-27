@@ -60,11 +60,16 @@ namespace ListasDoblementeLigadas
             lista.BorrarNodo("Uno");
             Console.WriteLine(lista.RecorrerLista());
 
-            Console.WriteLine("Agregando nodo 'Cinco'");
-            lista.AgregarNodo("Cinco");
+            Console.WriteLine("Agregando nodo al inicio 'primero'");
+            lista.AgregarNodoInicio("primero");
             //Console.WriteLine(lista.RecorrerLista());
 
             Console.WriteLine("Recorriendo la lista inversa\n" + lista.RecorrerListaInversa());
+            Console.WriteLine(lista.RecorrerLista());
+            Console.WriteLine("");
+            Console.WriteLine("Eliminando el primero");
+            lista.BorrarNodo("primero");
+            Console.WriteLine(lista.RecorrerLista());
 
             Console.ReadKey();
         }
