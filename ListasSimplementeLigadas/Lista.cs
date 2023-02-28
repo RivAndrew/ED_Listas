@@ -67,9 +67,8 @@ namespace ListasSimplementeLigadas
         // Método que agrega un nodo al inicio de la lista.
         public void AgregarNodoInicio(string valor)
         {
-            nodoActual = nodoInicial;   // se posiciona en el inicio de la lista.
-            Nodo nuevoNodo = new Nodo(valor, nodoActual.Siguiente); // crea un nuevo nodo y lo conecta con el nodo siguiente.
-            nodoActual.Siguiente = nuevoNodo;   // conecta el nodo actual, el cual es el inicio, con el nuevo nodo.
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial.Siguiente); // crea un nuevo nodo y lo conecta con el nodo siguiente.
+            nodoInicial.Siguiente = nuevoNodo;   // conecta el nodo actual, el cual es el inicio, con el nuevo nodo.
         }
 
         // Método que busca un nodo dado un valor tipo string.

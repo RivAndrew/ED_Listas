@@ -15,12 +15,13 @@ namespace ListasSimplementeLigadasCirculares
         public Lista()
         {
             nodoInicial = new Nodo();
+            nodoInicial.Siguiente = nodoInicial;
         }
 
         // Método que verifica si la lista esta vacia o no, usando un booleano.
         public bool ValidaVacio()
         {
-            if (nodoInicial.Siguiente == null)
+            if (nodoInicial.Siguiente == nodoInicial)
             {
                 return true;
             }
@@ -30,7 +31,7 @@ namespace ListasSimplementeLigadasCirculares
         // Método que desconecta el nodo inicio de los demas nodos. 
         public void VaciarLista()
         {
-            nodoInicial.Siguiente = null;
+            nodoInicial.Siguiente = nodoInicial;
         }
 
         // Método que imprime todos los nodos.
@@ -40,8 +41,8 @@ namespace ListasSimplementeLigadasCirculares
             {
                 string valores = string.Empty;
                 nodoActual = nodoInicial;
-                while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial) // mientras que el nodo siguiente exista y el nodo siguiente -
-                {                                                                           // no sea igual al nodoInicial, se movera a ese nodo.
+                while (nodoActual.Siguiente != nodoInicial) // mientras que el nodo siguiente sea diferente del nodoInicial.
+                {
                     nodoActual = nodoActual.Siguiente;
                     valores += $"{nodoActual.Valor}\n";
                 }
@@ -54,21 +55,19 @@ namespace ListasSimplementeLigadasCirculares
         public void AgregarNodo(string valor)
         {
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial) // mientras que el nodo siguiente exista y el nodo siguiente -
-            {                                                                           // no sea igual al nodoInicial, se movera a ese nodo.
+            while (nodoActual.Siguiente != nodoInicial) // mientras que el nodo siguiente sea diferente del nodoInicial.
+            {
                 nodoActual = nodoActual.Siguiente;
             }
-            Nodo nuevoNodo = new Nodo(valor);
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial);  // crea un nuevo nodo con el valor recibido y se conecta al nodo inicial para ser circular.
             nodoActual.Siguiente = nuevoNodo;
-            nuevoNodo.Siguiente = nodoInicial;  // conecta el nuevo nodo con el nodo inicial, haciendo la lista circular.
         }
 
         // Método que agrega un nodo al inicio de la lista.
         public void AgregarNodoInicio(string valor)
         {
-            nodoActual = nodoInicial;
-            Nodo nuevoNodo = new Nodo(valor, nodoActual.Siguiente);
-            nodoActual.Siguiente = nuevoNodo;
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial.Siguiente);
+            nodoInicial.Siguiente = nuevoNodo;
         }
 
         // Método que busca un nodo dado un valor tipo string.
@@ -77,8 +76,8 @@ namespace ListasSimplementeLigadasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Siguiente != null && nodoBusqueda.Siguiente != nodoInicial) // mientras que el nodo siguiente exista y el nodo siguiente -
-                {                                                                               // no sea igual al nodoInicial, se movera a ese nodo.
+                while (nodoBusqueda.Siguiente != nodoInicial) // mientras que el nodo siguiente sea diferente del nodoInicial.
+                {
                     nodoBusqueda = nodoBusqueda.Siguiente;
                     if (nodoBusqueda.Valor == valor)
                     {
@@ -96,8 +95,8 @@ namespace ListasSimplementeLigadasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Siguiente != null && nodoBusqueda.Siguiente != nodoInicial) // mientras que el nodo siguiente exista y el nodo siguiente -
-                {                                                                               // no sea igual al nodoInicial, se movera a ese nodo.
+                while (nodoBusqueda.Siguiente != nodoInicial) // mientras que el nodo siguiente sea diferente del nodoInicial.
+                {
                     nodoBusqueda = nodoBusqueda.Siguiente;
                     Indice++;
                     if (Indice == indice)
@@ -115,8 +114,8 @@ namespace ListasSimplementeLigadasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Siguiente != null   // mientras que el nodo siguiente exista, su valor no sea el valor recibido y que el nodo siguiente -
-                            && nodoBusqueda.Siguiente.Valor != valor && nodoBusqueda.Siguiente != nodoInicial)  // no sea igual al nodoInicial, se movera a ese nodo.
+                while (nodoBusqueda.Siguiente != nodoInicial   // mientras que el nodo siguiente sea diferente del nodoInicial y su valor no sea el valor recibido.
+                            && nodoBusqueda.Siguiente.Valor != valor)
                 {
                     nodoBusqueda = nodoBusqueda.Siguiente;
                     if (nodoBusqueda.Siguiente.Valor == valor)
@@ -145,11 +144,11 @@ namespace ListasSimplementeLigadasCirculares
 
         // Se imprimen todos los Nodos usando 'Siguiente' para comprobar la conexion de los Nodos,
         // saltandose el nodoInicial el cual se usa como referencia.
-        public string ImprimirCiclo() 
-        { 
+        public string ImprimirCiclo()
+        {
             string datos = string.Empty;    // crea un string para guardar los valores.
             nodoActual = nodoInicial;   // se posiciona en el nodo inicial.
-            for (int i = 0; i < 10; i++)    //  se ejecuta lo de adentro 9 veces.
+            for (int i = 0; i < 10; i++)    //  se ejecuta lo de adentro 10 veces.
             {
                 if (nodoActual == nodoInicial)  // compara el nodo actual con el nodo inicial.
                 {

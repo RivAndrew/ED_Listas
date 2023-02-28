@@ -11,10 +11,10 @@ namespace ListasSimplementeLigadasCirculares
         public string Valor { get; set; }
         public Nodo Siguiente { get; set; }
 
-        public Nodo(string valor = "Inicio", Nodo siguente = null)
+        public Nodo(string valor = "Inicio", Nodo siguiente = null)
         {
             Valor = valor;
-            Siguiente = siguente;  
+            Siguiente = siguiente;  
         }
 
     }

@@ -15,12 +15,13 @@ namespace ListasDoblementeLigadasCirculares
         public Lista()
         {
             nodoInicial = new Nodo();
+            nodoInicial.Siguiente = nodoInicial;
         }
 
         // Método que verifica si la lista esta vacia o no, usando un booleano.
         public bool ValidaVacio()
         {
-            if (nodoInicial.Siguiente == null)
+            if (nodoInicial.Siguiente == nodoInicial)
             {
                 return true;
             }
@@ -30,8 +31,8 @@ namespace ListasDoblementeLigadasCirculares
         // Método que desconecta el nodo inicio de los demas nodos. 
         public void VaciarLista()
         {
-            nodoInicial.Siguiente = null;
-            nodoInicial.Anterior = null;
+            nodoInicial.Siguiente = nodoInicial;
+            nodoInicial.Anterior = nodoInicial;
         }
 
         // Método que imprime todos los nodos.
@@ -41,8 +42,8 @@ namespace ListasDoblementeLigadasCirculares
             {
                 string valores = string.Empty;
                 nodoActual = nodoInicial;
-                while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial) // mientras que el nodo siguiente exista y el nodo siguiente -
-                {                                                                           // no sea igual al nodoInicial, se movera a ese nodo.
+                while (nodoActual.Siguiente != nodoInicial) // mientras que el nodo siguiente sea diferente del nodoInicial.
+                {                                                                          
                     nodoActual = nodoActual.Siguiente;
                     valores += $"{nodoActual.Valor}\n";
                 }
@@ -55,24 +56,21 @@ namespace ListasDoblementeLigadasCirculares
         public void AgregarNodo(string valor)
         {
             nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
+            while (nodoActual.Siguiente != nodoInicial)
             {
                 nodoActual = nodoActual.Siguiente;
             }
-            Nodo nuevoNodo = new Nodo(valor);
+            Nodo nuevoNodo = new Nodo(valor, nodoActual, nodoInicial);  // conecta el nodo nuevo con el nodo actual.
             nodoActual.Siguiente = nuevoNodo;
-            nuevoNodo.Anterior = nodoActual;    // conecta el nodo nuevo con el nodo actual.
-            nuevoNodo.Siguiente = nodoInicial;
             nodoInicial.Anterior = nuevoNodo;
         }
 
         // Método que agrega un nodo al inicio de la lista.
         public void AgregarNodoInicio(string valor)
         {
-            nodoActual = nodoInicial;
-            Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoActual.Siguiente);
-            nodoActual.Siguiente.Anterior = nuevoNodo;
-            nodoActual.Siguiente = nuevoNodo;
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoInicial.Siguiente);
+            nodoInicial.Siguiente.Anterior = nuevoNodo;
+            nodoInicial.Siguiente = nuevoNodo;
         }
 
         // Método que agrega un nodo al inicio de la lista.
@@ -81,7 +79,7 @@ namespace ListasDoblementeLigadasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Siguiente != null && nodoBusqueda.Siguiente != nodoInicial)
+                while (nodoBusqueda.Siguiente != nodoInicial)   // mientras que el nodo siguiente sea diferente del nodoInicial.
                 {
                     nodoBusqueda = nodoBusqueda.Siguiente;
                     if (nodoBusqueda.Valor == valor)
@@ -100,7 +98,7 @@ namespace ListasDoblementeLigadasCirculares
             if (ValidaVacio() == false)
             {
                 Nodo nodoBusqueda = nodoInicial;
-                while (nodoBusqueda.Siguiente != null && nodoBusqueda.Siguiente != nodoInicial)
+                while (nodoBusqueda.Siguiente != nodoInicial)   // mientras que el nodo siguiente sea diferente del nodoInicial.
                 {
                     nodoBusqueda = nodoBusqueda.Siguiente;
                     Indice++;
@@ -136,7 +134,7 @@ namespace ListasDoblementeLigadasCirculares
         {
             string valores = string.Empty;
             nodoActual = nodoInicial;
-            while (nodoActual.Anterior != null && nodoActual.Anterior != nodoInicial)
+            while (nodoActual.Anterior != nodoInicial)  // mientras que el nodo siguiente sea diferente del nodoInicial.
             {
                 nodoActual = nodoActual.Anterior;
                 valores += $"{nodoActual.Valor}\n";
