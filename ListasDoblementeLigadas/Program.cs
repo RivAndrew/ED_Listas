@@ -69,7 +69,7 @@ namespace ListasDoblementeLigadas
             //lista.BorrarNodo("primero");
             //Console.WriteLine(lista.RecorrerLista());
 
-            Console.WriteLine("Se vacia la lista: ");
+            Console.WriteLine("Eliminando lista: ");
             lista.VaciarLista();
             Console.WriteLine(lista.RecorrerLista());
             Console.WriteLine(lista.RecorrerListaInversa());

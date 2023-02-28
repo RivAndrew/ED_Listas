@@ -29,14 +29,18 @@ namespace ListasDoblementeLigadasCirculares
         }
         public string RecorrerLista()
         {
-            string valores = string.Empty;
-            nodoActual = nodoInicial;
-            while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
+            if (ValidaVacio() == false)
             {
-                nodoActual = nodoActual.Siguiente;
-                valores += $"{nodoActual.Valor}\n";
+                string valores = string.Empty;
+                nodoActual = nodoInicial;
+                while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
+                {
+                    nodoActual = nodoActual.Siguiente;
+                    valores += $"{nodoActual.Valor}\n";
+                }
+                return valores;
             }
-            return valores;
+            return "La lista esta vacia";
         }
         public void AgregarNodo(string valor)
         {
