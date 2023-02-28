@@ -40,8 +40,8 @@ namespace ListasSimplementeLigadasCirculares
             {
                 string valores = string.Empty;
                 nodoActual = nodoInicial;
-                while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial)
-                {
+                while (nodoActual.Siguiente != null && nodoActual.Siguiente != nodoInicial) // mientras que el nodo siguiente exista y el nodo siguiente -
+                {                                                                           // no sea igual al nodoInicial, se movera a ese nodo.
                     nodoActual = nodoActual.Siguiente;
                     valores += $"{nodoActual.Valor}\n";
                 }

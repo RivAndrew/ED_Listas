@@ -47,7 +47,7 @@ namespace ListasSimplementeLigadas
                     nodoActual = nodoActual.Siguiente;
                     valores += $"{nodoActual.Valor}\n";
                 }
-                return valores;
+                return valores; // regresa una string con los valores guardados.
             }
             return "La lista esta vacia.";
         }
