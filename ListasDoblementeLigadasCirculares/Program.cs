@@ -55,8 +55,8 @@ namespace ListasDoblementeLigadasCirculares
             }
 
             Console.WriteLine("");
-            Console.WriteLine("Eliminando el uno");
-            lista.BorrarNodo("Uno");
+            Console.WriteLine("Eliminando el Tres");
+            lista.BorrarNodo("Tres");
             Console.WriteLine(lista.RecorrerLista());
 
             Console.WriteLine("Agregando nodo 'primero' al inicio ");

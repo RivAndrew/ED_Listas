@@ -54,8 +54,8 @@ namespace ListasDoblementeLigadas
                 Console.WriteLine("No encontrado!");
             }
 
-            Console.WriteLine("\nEliminando el uno");
-            lista.BorrarNodo("Uno");
+            Console.WriteLine("\nEliminando el Tres");
+            lista.BorrarNodo("Tres");
             Console.WriteLine(lista.RecorrerLista());
 
             Console.WriteLine("Agregando nodo 'primero' al inicio ");

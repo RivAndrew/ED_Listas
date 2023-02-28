@@ -67,10 +67,9 @@ namespace ListasDoblementeLigadas
         // Método que agrega un nodo al inicio de la lista.
         public void AgregarNodoInicio(string valor)
         {
-            nodoActual = nodoInicial;
-            Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoActual.Siguiente);
-            nodoActual.Siguiente.Anterior = nuevoNodo;  // se conecta el nodo siguiente con el nuevo nodo.
-            nodoActual.Siguiente = nuevoNodo;
+            Nodo nuevoNodo = new Nodo(valor, nodoInicial, nodoInicial.Siguiente);
+            nodoInicial.Siguiente.Anterior = nuevoNodo;  // se conecta el nodo siguiente con el nuevo nodo.
+            nodoInicial.Siguiente = nuevoNodo;
         }
 
         // Método que agrega un nodo al inicio de la lista.
@@ -121,8 +120,15 @@ namespace ListasDoblementeLigadas
                 nodoActual = Buscar(valor);
                 if (nodoActual != null)
                 {
-                    nodoActual.Anterior.Siguiente = nodoActual.Siguiente;   // se conecta el nodo anterior con el nodo siguiente.
-                    nodoActual.Siguiente.Anterior = nodoActual.Anterior;    // se conecta el nodo siguiente con el nodo anterior
+                    if (nodoActual.Siguiente != null)
+                    {
+                        nodoActual.Anterior.Siguiente = nodoActual.Siguiente;   // se conecta el nodo anterior con el nodo siguiente.
+                        nodoActual.Siguiente.Anterior = nodoActual.Anterior;    // se conecta el nodo siguiente con el nodo anterior
+                    }
+                    if (nodoActual.Siguiente == null)
+                    {
+                        nodoActual.Anterior.Siguiente = null;
+                    }
                     nodoActual.Siguiente = null;    // se desconectan de ambos sentidos.
                     nodoActual.Anterior = null;
                 }
